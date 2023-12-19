@@ -1,1 +1,63 @@
-<p>usuarios works!</p>
+<section class="add" *ngIf="!form">
+    <button (click)="form = !form">Agregar usuario</button>
+</section>
+
+<section class="form" *ngIf="form">
+    <div class="form_content">
+        <form *ngIf="form" (ngSubmit)="usuario.id ? update() : create()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" id="Nombre" name="Nombre" [(ngModel)]="usuario.Nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="ApellidoP">Apellido Paterno:</label>
+                <input type="text" id="ApellidoP" name="ApellidoP" [(ngModel)]="usuario.ApellidoP" required>
+            </div>
+            <div class="form-group">
+                <label for="ApellidoM">Apellido Materno:</label>
+                <input type="text" id="ApellidoM" name="ApellidoM" [(ngModel)]="usuario.ApellidoM" required>
+            </div>
+            <div class="form-group">
+                <label for="Puesto">Selecciona un Puesto:</label>
+                <select id="Puesto" name="Puesto">
+                    <option value="Jefe">Jefe</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Empleado">Empleado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="file">Imagen:</label>
+                <input type="file" name="file" required accept="image/png, image/jpeg" (change)="select($event)">
+            </div>
+            <div class="form-group">
+                <img [src]="imagen ? imagen : (sendImagen ? sendImagen : 'http://localhost:3000/isalas/default.png')"
+                    alt="Imagen seleccionada">
+            </div>
+            <div id="botones">
+                <button type="submit">{{ usuario.id ? 'Actualizar' : 'Agregar' }}</button>
+                <button (click)="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="content">
+    <div class="card" *ngFor="let usuario of usuarios">
+        <mat-card class="example-card">
+            <img mat-card-image src="http://localhost:3000/{{usuario.Foto}}" alt="">
+            <mat-card-content>
+                <mat-card-title>{{usuario.Nombre}}+ ' ' + {{usuario.ApellidoP}} + ' ' + {{usuario.ApellidoM}}</mat-card-title>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)="updatef(usuario)">Editar</button>
+                <button mat-button (click)="delete(usuario)">Eliminar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</section>
+
+<div class="spinner-container" *ngIf="spinner">
+    <div class="spinner">
+        <img src="../../../assets/loading.gif" alt="Cargando...">
+    </div>
+</div>

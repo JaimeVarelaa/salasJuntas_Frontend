@@ -7,6 +7,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ReservacionesComponent } from './content/reservaciones/reservaciones.component';
 import { UsuariosComponent } from './content/usuarios/usuarios.component';
 import { SalasComponent } from './content/salas/salas.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MateritalModule } from './materital.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,11 +19,16 @@ import { SalasComponent } from './content/salas/salas.component';
     NavbarComponent,
     ReservacionesComponent,
     UsuariosComponent,
-    SalasComponent
+    SalasComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MateritalModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
