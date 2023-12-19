@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit{
+export class UsuariosComponent implements OnInit {
   URL = 'http://localhost:3000/usuarios/';
 
   usuarios: any[] = [];
-  usuario: any = {};
+  usuario: any = {
+    Puesto: 'Empleado'
+  };
   imagen = '';
   sendImagen = '';
 

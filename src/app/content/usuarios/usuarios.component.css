@@ -116,7 +116,7 @@
   height: 250px;
 
   .card {
-    width: 280px;
+    width: 230px;
     margin: 10px;
     border: 1px solid #cccccc;
     border-radius: 5px;
@@ -127,7 +127,14 @@
       width: 100%;
 
       img {
-        max-height: 280px;
+        display: block;
+        margin: auto;
+        max-height: 150px;
+        max-width: 150px;
+      }
+
+      mat-card-content{
+        text-align: center;
       }
 
       mat-card-actions {

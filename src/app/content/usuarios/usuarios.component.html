@@ -19,10 +19,10 @@
             </div>
             <div class="form-group">
                 <label for="Puesto">Selecciona un Puesto:</label>
-                <select id="Puesto" name="Puesto">
-                    <option value="Jefe">Jefe</option>
-                    <option value="Supervisor">Supervisor</option>
+                <select id="Puesto" name="Puesto" [(ngModel)]="usuario.Puesto">
                     <option value="Empleado">Empleado</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Jefe">Jefe</option>
                 </select>
             </div>
             <div class="form-group">
@@ -30,7 +30,7 @@
                 <input type="file" name="file" required accept="image/png, image/jpeg" (change)="select($event)">
             </div>
             <div class="form-group">
-                <img [src]="imagen ? imagen : (sendImagen ? sendImagen : 'http://localhost:3000/isalas/default.png')"
+                <img [src]="imagen ? imagen : (sendImagen ? sendImagen : 'http://localhost:3000/iusuarios/default.png')"
                     alt="Imagen seleccionada">
             </div>
             <div id="botones">
@@ -46,7 +46,9 @@
         <mat-card class="example-card">
             <img mat-card-image src="http://localhost:3000/{{usuario.Foto}}" alt="">
             <mat-card-content>
-                <mat-card-title>{{usuario.Nombre}}+ ' ' + {{usuario.ApellidoP}} + ' ' + {{usuario.ApellidoM}}</mat-card-title>
+                <mat-card-title>{{usuario.Nombre}} {{usuario.ApellidoP}}</mat-card-title>
+                <mat-card-title>{{usuario.ApellidoM}}</mat-card-title>
+                <mat-card-subtitle>{{usuario.Puesto}}</mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button (click)="updatef(usuario)">Editar</button>
