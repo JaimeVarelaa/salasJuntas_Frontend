@@ -1,0 +1,19 @@
+<table class="table">
+    <tr>
+        <th>Usuario</th>
+        <th>Sala</th>
+        <th>Fecha</th>
+        <th>Hora Inicio</th>
+        <th>Hora Final</th>
+    </tr>
+    <tr *ngIf="cancelados.length <= 0">
+        <td colspan="6">Sin datos</td>
+    </tr>
+    <tr *ngFor="let cancelado of cancelados">
+        <td>{{ cancelado.usuario }}</td>
+        <td>{{ cancelado.sala }}</td>
+        <td>{{ formaFecha(cancelado.fecha) }}</td>
+        <td>{{ formatHora(cancelado.horainicio) }}</td>
+        <td>{{ formatHora(cancelado.horafinal) }}</td>
+    </tr>
+</table>

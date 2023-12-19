@@ -1,0 +1,34 @@
+table {
+    width: 70%;
+    margin: auto;
+    padding-top: 25px;
+
+    th,
+    td {
+        border: 1px dotted #22e4e4;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #424874;
+        color: #fff;
+    }
+
+    tr:hover {
+        background-color: #fff;
+        cursor: default;
+    }
+
+
+    #cancel {
+        background: rgb(255, 105, 105);
+        cursor: pointer;
+    }
+
+    #complete {
+        background: rgb(110, 255, 105);
+        cursor: pointer;
+    }
+
+}

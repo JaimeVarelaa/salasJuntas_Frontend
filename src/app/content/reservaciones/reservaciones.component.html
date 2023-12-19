@@ -1,1 +1,94 @@
-<p>reservaciones works!</p>
+<section class="add" *ngIf="!form">
+    <button (click)="form = !form">Agregar reservación</button>
+</section>
+
+<section class="form" *ngIf="form">
+    <div class="form_content">
+        <form (ngSubmit)="create()" enctype="multipart/form-data">
+
+            <div class="form-group" *ngIf="!horarioBtn">
+                <label for="Usuario">Selecciona un usuario:</label>
+                <select id="Usuario" name="Usuario" [(ngModel)]="reservacion.id_usuario">
+                    <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{usuario.id}}.-{{usuario.Nombre}}
+                        {{usuario.ApellidoP}} {{usuario.ApellidoM}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="!horarioBtn">
+                <label for="Sala">Selecciona una sala: </label>
+                <select id="Sala" name="Sala" [(ngModel)]="reservacion.id_sala">
+                    <option *ngFor="let sala of salas" [ngValue]="sala">{{sala.id}}.-{{sala.Nombre}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="!horarioBtn">
+                <label for="dia">Día: </label>
+                <select id="dia" name="dia" [(ngModel)]="reservacion.dia">
+                    <option *ngFor="let dia of dias">{{ dia }}</option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="!horarioBtn">
+                <label for="mes">Mes: </label>
+                <select id="mes" name="mes" [(ngModel)]="reservacion.mes">
+                    <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.nombre }}</option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="!horarioBtn">
+                <label for="anio">Año: </label>
+                <select id="anio" name="anio" [(ngModel)]="reservacion.anio">
+                    <option *ngFor="let anio of anios">{{ anio }}</option>
+                </select>
+            </div>
+
+            <div id="showHor" *ngIf="!horarioBtn">
+                <button type="button"
+                    (click)="horarios(reservacion.id_usuario, reservacion.id_sala, reservacion.dia, reservacion.mes, reservacion.anio, reservacion.id_sala.Nombre, reservacion.id_usuario.Nombre)">Ver
+                    horarios</button>
+            </div>
+
+            <div class="form-group" *ngIf="horarioBtn">
+                <label for="horainicial">Hora: </label>
+                <select id="horainicial" name="horainicial" [(ngModel)]="reservacion.horainicial">
+                    <option *ngFor="let horaDisponible of horasDisponibles">{{ horaDisponible }}</option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="horarioBtn">
+                <label for="duracion">Duración: </label>
+                <select id="duracion" name="duracion" [(ngModel)]="reservacion.duracion">
+                    <option value="1">1 hora</option>
+                    <option value="2">2 horas</option>
+                </select>
+            </div>
+            <p *ngIf="invalido">Faltan campos obligatorios</p>
+            <div id="botones" *ngIf="horarioBtn">
+                <button type="submit">Agregar</button>
+                <button type="button" (click)="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<div>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab label="Pendientes">
+            <app-pendiente></app-pendiente>
+        </mat-tab>
+        <mat-tab label="Completadas">
+            <app-completado></app-completado>
+        </mat-tab>
+        <mat-tab label="Canceladas">
+            <app-cancelado></app-cancelado>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+<div class="spinner-container" *ngIf="spinner">
+    <div class="spinner">
+        <img src="../../../assets/loading.gif" alt="Cargando...">
+    </div>
+</div>
